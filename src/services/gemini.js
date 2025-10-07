@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent";
+  "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
 export async function askGemini(prompt) {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
