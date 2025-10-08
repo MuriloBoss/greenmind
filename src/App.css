@@ -116,3 +116,21 @@
 .suggestions button:hover {
   background: #c8e6c9;
 }
+
+.image-button {
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-button:hover {
+  background: #e0e0e0;
+}
