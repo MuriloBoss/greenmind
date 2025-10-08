@@ -1,83 +1,86 @@
-// src/App.jsx
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { askGemini } from "./services/gemini";
+import "./App.css";
 
-export default function App() {
-  const [input, setInput] = useState("");
+function App() {
   const [messages, setMessages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const chatEndRef = useRef(null);
+  const [input, setInput] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
+  const suggestions = [
+    "Quais plantas são fáceis de cuidar?",
+    "Como regar corretamente minhas plantas?",
+    "Qual é a melhor iluminação para plantas de interior?",
+  ];
 
-  async function handleSend() {
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (text) => {
+    if (!text.trim()) return;
 
-    const userMessage = { role: "user", text: input };
+    const userMessage = { sender: "user", text };
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
-    setIsLoading(true);
+    setLoading(true);
 
     try {
-      const reply = await askGemini(`Você é um assistente sobre hábitos saudáveis. Responda de forma simples e prática. Pergunta: ${input}`);
-      setMessages((prev) => [...prev, { role: "ai", text: reply }]);
+      const response = await askGemini(text);
+      const botMessage = { sender: "bot", text: response };
+      setMessages((prev) => [...prev, botMessage]);
+    } catch (error) {
+      setMessages((prev) => [
+        ...prev,
+        { sender: "bot", text: "Ops! Algo deu errado. Tente novamente." },
+      ]);
     } finally {
-      setIsLoading(false);
+      setLoading(false);
     }
-  }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    sendMessage(input);
+  };
 
   return (
-    <div className="flex flex-col h-screen bg-gray-100">
-      {/* Cabeçalho */}
-      <header className="bg-white shadow p-4">
-        <h1 className="text-xl font-bold text-green-700 text-center">🌿 GreenMind</h1>
-      </header>
+    <div className="chat-container">
+      <h1 className="chat-title">🌱 GreenMind</h1>
 
-      {/* Mensagens */}
-      <main className="flex-1 overflow-y-auto p-4 space-y-4">
-        {messages.map((msg, i) => (
+      <div className="chat-box">
+        {messages.map((msg, idx) => (
           <div
-            key={i}
-            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            key={idx}
+            className={`chat-message ${
+              msg.sender === "user" ? "user-message" : "bot-message"
+            }`}
           >
-            <div
-              className={`max-w-lg p-3 rounded-lg shadow ${
-                msg.role === "user"
-                  ? "bg-green-600 text-white"
-                  : "bg-white text-gray-800"
-              }`}
-            >
-              {/* A MÁGICA ESTÁ AQUI 👇 */}
-              <p className="text-sm whitespace-pre-wrap">{msg.text}</p>
-            </div>
+            {msg.text}
           </div>
         ))}
-        {isLoading && <p className="text-center text-gray-500">GreenMind está pensando...</p>}
-        <div ref={chatEndRef} />
-      </main>
 
-      {/* Input */}
-      <footer className="bg-white p-4">
-        <div className="flex w-full max-w-lg mx-auto">
-          <input
-            className="flex-1 border rounded-l-lg p-2 focus:outline-none focus:ring-2 focus:ring-green-500"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSend()}
-            placeholder="Pergunte sobre alimentação ou cultivo..."
-            disabled={isLoading}
-          />
-          <button
-            className="bg-green-600 text-white px-4 rounded-r-lg hover:bg-green-700 disabled:bg-green-400"
-            onClick={handleSend}
-            disabled={isLoading || !input.trim()}
-          >
-            Enviar
+        {loading && <div className="loading">🤖 A IA está pensando...</div>}
+      </div>
+
+      <div className="suggestions">
+        {suggestions.map((s, idx) => (
+          <button key={idx} onClick={() => sendMessage(s)}>
+            {s}
           </button>
-        </div>
-      </footer>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="chat-input-container">
+        <input
+          type="text"
+          placeholder="Digite sua pergunta..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          className="chat-input"
+        />
+        <button type="submit" className="send-button">
+          ➤
+        </button>
+      </form>
     </div>
   );
 }
+
+export default App;

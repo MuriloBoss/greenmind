@@ -1,42 +1,118 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+.chat-container {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 20px;
+  background: #f5f7f9;
+  border-radius: 15px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.chat-title {
   text-align: center;
+  margin-bottom: 15px;
+  color: #2e7d32;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.chat-box {
+  flex: 1;
+  min-height: 300px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.chat-message {
+  padding: 10px 15px;
+  border-radius: 20px;
+  max-width: 75%;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-wrap: break-word;
 }
 
-.card {
-  padding: 2em;
+.user-message {
+  align-self: flex-end;
+  background: #004dff;
+  color: white;
 }
 
-.read-the-docs {
-  color: #888;
+.bot-message {
+  align-self: flex-start;
+  background: #e0e0e0;
+  color: #333;
+}
+
+.loading {
+  font-size: 0.9rem;
+  font-style: italic;
+  color: #666;
+  align-self: flex-start;
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+.chat-input:focus {
+  border-color: #004dff;
+}
+
+.send-button {
+  background: #004dff;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.send-button:hover {
+  background: #0036b3;
+}
+
+.suggestions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.suggestions button {
+  background: #e8f5e9;
+  border: 1px solid #a5d6a7;
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+
+.suggestions button:hover {
+  background: #c8e6c9;
 }
