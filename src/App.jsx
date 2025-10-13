@@ -28,8 +28,9 @@ function App() {
 
   const suggestions = [
     "Quais plantas são fáceis de cuidar?",
-    "Como regar corretamente minhas plantas?",
-    "Qual é a melhor iluminação para plantas de interior?",
+    "Como regar corretamente a minha horta vertical?",
+    "Como posso melhorar meus hábitos alimentares?",
+    "Passo-a-passo para montar uma horta vertical no IFSUL Passo Fundo",
   ];
 
   const sendMessage = async (text, image = null) => {

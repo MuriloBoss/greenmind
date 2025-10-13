@@ -26,29 +26,32 @@ const fileToGenerativePart = (file) => {
 };
 
 
-const systemPrompt = `
-Você é GreenMind 🌱, um assistente simpático que ajuda pessoas a cuidar de plantas, hortas verticais e hábitos saudáveis. 
-- Responda como um guia prático e acolhedor, podendo atuar como nutricionista ou educador físico quando pertinente. 
-- Só diga "Sou o GreenMind" se perguntarem quem você é.
-- Seja claro, breve e positivo.
-`;
-
 export async function askGemini(userMessage, imageFile = null) {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 
+  const systemPrompt = `
+Você é GreenMind 🌱, um assistente simpático que ajuda pessoas a cuidar de plantas, hortas verticais e hábitos saudáveis.
+- Responda como um guia prático e acolhedor, podendo atuar como nutricionista ou educador físico quando pertinente. 
+- Só diga "Sou o GreenMind" se perguntarem quem você é. 
+- Seja claro, breve e positivo.
+- Responda em tópicos numerados ou com marcadores quando fizer sentido.
+  `;
+
   try {
-    const contents = [{ parts: [{ text: userMessage }] }];
+    const contents = [
+      { parts: [{ text: systemPrompt }] },   
+      { parts: [{ text: userMessage }] },      
+    ];
 
     if (imageFile) {
       const imagePart = await fileToGenerativePart(imageFile);
-      contents[0].parts.push(imagePart);
+      contents[1].parts.push(imagePart); 
     }
 
     const response = await axios.post(
       `${GEMINI_API_URL}?key=${apiKey}`,
       {
-        systemInstruction: { role: "system", parts: [{ text: systemPrompt }] },
-        contents,
+        contents: contents, 
         generationConfig: {
           temperature: 0.7,
           topK: 40,
@@ -56,7 +59,9 @@ export async function askGemini(userMessage, imageFile = null) {
           maxOutputTokens: 2048,
         },
       },
-      { headers: { "Content-Type": "application/json" } }
+      {
+        headers: { "Content-Type": "application/json" },
+      }
     );
 
     const text =

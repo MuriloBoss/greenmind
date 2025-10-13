@@ -29,6 +29,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  scroll-behavior: smooth;
 }
 
 .chat-message {
@@ -36,20 +37,28 @@
   border-radius: 20px;
   max-width: 75%;
   font-size: 0.95rem;
-  line-height: 1.4;
+  line-height: 1.6;
   word-wrap: break-word;
+  white-space: pre-wrap; 
 }
 
 .user-message {
   align-self: flex-end;
-  background: #004dff;
+  background: #00750a;
   color: white;
 }
 
 .bot-message {
   align-self: flex-start;
-  background: #e0e0e0;
-  color: #333;
+  background: #fafffb;
+  color: #000000;
+  border: 1px solid #c8e6c9;
+}
+
+.bot-message div {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  margin-bottom: 6px;
 }
 
 .loading {
@@ -59,6 +68,7 @@
   align-self: flex-start;
 }
 
+/* Input */
 .chat-input-container {
   display: flex;
   align-items: center;
@@ -77,11 +87,11 @@
 }
 
 .chat-input:focus {
-  border-color: #004dff;
+  border-color: #00750a;
 }
 
 .send-button {
-  background: #004dff;
+  background: #0e7a00;
   color: white;
   border: none;
   border-radius: 50%;
@@ -111,6 +121,7 @@
   cursor: pointer;
   font-size: 0.85rem;
   transition: background 0.2s;
+  color: #2e7d32;
 }
 
 .suggestions button:hover {
