@@ -3,11 +3,7 @@ import axios from "axios";
 const GEMINI_API_URL =
   "https://generativelanguage.googleapis.com/v1/models/gemini-2.5-flash:generateContent";
 
-/**
- * Converte um arquivo (File object) do navegador para o formato de dados inline da API Gemini.
- * @param {File} file - O arquivo de imagem a ser convertido.
- * @returns {Promise<object>} Uma promessa que resolve com o objeto de dados da imagem.
- */
+
 const fileToGenerativePart = (file) => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();

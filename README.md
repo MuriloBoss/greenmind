@@ -1,16 +1,124 @@
-# React + Vite
+# GreenMind - Assistente de Plantas com IA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Chatbot inteligente que ajuda no cuidado de plantas, hortas verticais e hábitos saudáveis, usando a API Gemini do Google.
 
-Currently, two official plugins are available:
+## 📋 Pré-requisitos
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Node.js (v20 ou acima)
+- npm (vem com o Node.js)
+- Chave de API do Google Gemini ([obtenha aqui](https://aistudio.google.com/app/apikey))
 
-## React Compiler
+## 🚀 Como criar este projeto do zero
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Criar o projeto React + Vite
 
-## Expanding the ESLint configuration
+```bash
+npm create vite@latest greenmind -- --template react
+cd greenmind
+npm install
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 2. Instalar dependências
+
+```bash
+npm install axios
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+```
+
+### 3. Configurar Tailwind CSS
+
+Edite `tailwind.config.js`:
+
+```js
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+### 4. Criar arquivo de variáveis de ambiente
+
+Crie `.env` na raiz do projeto:
+
+```
+VITE_GEMINI_API_KEY=sua_chave_api_aqui
+```
+
+### 5. Criar estrutura de pastas
+
+```bash
+mkdir src\services
+```
+
+### 6. Criar arquivo do serviço Gemini
+
+Crie `src/services/gemini.js` com o código de integração da API.
+
+### 7. Atualizar arquivos principais
+
+- `src/index.css` - Estilos globais com Tailwind
+- `src/App.css` - Estilos do chat
+- `src/App.jsx` - Componente principal do chat
+- `src/main.jsx` - Ponto de entrada
+
+### 8. Executar o projeto
+
+```bash
+npm run dev
+```
+
+Acesse `http://localhost:5173`
+
+## 🔧 Estrutura do Projeto
+
+```
+greenmind/
+├── src/
+│   ├── services/
+│   │   └── gemini.js      # Integração com API Gemini
+│   ├── App.jsx            # Componente principal
+│   ├── App.css            # Estilos do chat
+│   ├── index.css          # Estilos globais
+│   └── main.jsx           # Entry point
+├── .env                   # Variáveis de ambiente
+├── package.json
+└── vite.config.js
+```
+
+## ✨ Funcionalidades
+
+- 💬 Chat interativo com IA
+- 📷 Análise de imagens de plantas
+- 🌿 Dicas de cuidados com plantas
+- 🥗 Orientações sobre hábitos saudáveis
+- 💡 Sugestões rápidas de perguntas
+
+## 🔑 Configuração da API Key
+
+1. Acesse [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Crie uma nova API Key
+3. Adicione no arquivo `.env`
+4. **Importante:** Adicione `.env` no `.gitignore` para não expor sua chave
+
+## 📦 Scripts Disponíveis
+
+```bash
+npm run dev      # Inicia servidor de desenvolvimento
+npm run build    # Cria build de produção
+npm run preview  # Preview do build de produção
+```
+
+## 🛠️ Tecnologias Utilizadas
+
+- React 18
+- Vite
+- Axios
+- Google Gemini API
+- Tailwind CSS

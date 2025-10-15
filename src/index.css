@@ -2,12 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Chat estilo Claude/Amazon Q */
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Animação suave para mensagens */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
@@ -17,7 +15,6 @@ body {
   animation: fadeIn 0.2s ease-out;
 }
 
-/* Indicador de digitação */
 @keyframes pulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
