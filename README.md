@@ -1,20 +1,20 @@
-# GreenMind - Assistente de Plantas com IA
+# Assistente de Plantas com IA
 
-Chatbot inteligente que ajuda no cuidado de plantas, hortas verticais e hábitos saudáveis, usando a API Gemini do Google.
+Chatbot inteligente que ajuda no cuidado de plantas hortas verticais e hábitos saudáveis usando a API Gemini do Google.
 
-## 📋 Pré-requisitos
+## Pré-requisitos
 
 - Node.js (v20 ou acima)
-- npm (vem com o Node.js)
+- npm
 - Chave de API do Google Gemini ([obtenha aqui](https://aistudio.google.com/app/apikey))
 
-## 🚀 Como criar este projeto do zero
+## Como criar este projeto do zero
 
 ### 1. Criar o projeto React + Vite
 
 ```bash
-npm create vite@latest greenmind -- --template react
-cd greenmind
+npm create vite@latest chat_ia_aula -- --template react
+cd chat_ia_aula
 npm install
 ```
 
@@ -76,7 +76,7 @@ npm run dev
 
 Acesse `http://localhost:5173`
 
-## 🔧 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```
 greenmind/
@@ -92,32 +92,30 @@ greenmind/
 └── vite.config.js
 ```
 
-## ✨ Funcionalidades
+## Funcionalidades
 
-- 💬 Chat interativo com IA
-- 📷 Análise de imagens de plantas
-- 🌿 Dicas de cuidados com plantas
-- 🥗 Orientações sobre hábitos saudáveis
-- 💡 Sugestões rápidas de perguntas
+- Chat interativo com IA
+- Análise de imagens de plantas
+- Dicas de cuidados com plantas
+- Orientações sobre hábitos saudáveis
 
-## 🔑 Configuração da API Key
+## Configuração da API Key
 
 1. Acesse [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. Crie uma nova API Key
 3. Adicione no arquivo `.env`
-4. **Importante:** Adicione `.env` no `.gitignore` para não expor sua chave
+4. Adicione `.env` no `.gitignore` para não expor sua chave
 
-## 📦 Scripts Disponíveis
+## Scripts
 
 ```bash
 npm run dev      # Inicia servidor de desenvolvimento
-npm run build    # Cria build de produção
-npm run preview  # Preview do build de produção
+npm run build    # Cria build p produção
 ```
 
 ## 🛠️ Tecnologias Utilizadas
 
-- React 18
+- React
 - Vite
 - Axios
 - Google Gemini API
